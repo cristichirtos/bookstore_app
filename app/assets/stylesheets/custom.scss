@@ -161,3 +161,25 @@ input {
 		color: $state-danger-text;
 	}
 }
+
+.label-pill {
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+  justify-content: end;
+}
+
+.book-path {
+	color: black;
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+		color: black;
+	}
+	li {
+		transition: all .2s ease-in-out;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
