@@ -2,3 +2,44 @@
 
 %h3= @book.title
 %h4= "by #{@book.author}"
+
+= image_tag (@book.image_url.nil? ? '/assets/no_book_url_image.png' : @book.image_url), alt: @book.title
+%br
+%p
+  %strong
+    Description: 
+  = "#{@book.description}"
+%p
+  %strong 
+    Genre: 
+  = "#{@book.genre}"
+%p
+  %strong 
+    Publisher: 
+  = "#{@book.publisher}"
+%p
+  %strong 
+    Publishing date: 
+  = "#{@book.publishing_date}"
+%p
+  %strong 
+    Quantity: 
+  = "#{@book.quantity}"
+%p
+  %strong 
+    Price: 
+  = "#{@book.price}"
+%p
+  %strong
+    Time added: 
+  = "#{@book.created_at}"
+%p
+  %strong
+    Time last updated: 
+  = "#{@book.updated_at}"
+
+= link_to 'Sell book', sell_book_path(@book), method: :patch, class: "btn #{@book.quantity == 0 ? 'btn-secondary' : 'btn-primary'} btn-custom"
+= link_to 'Edit book', edit_book_path(@book), class: 'btn btn-primary btn-custom'
+= link_to 'Delete book', @book, method: :delete, class: 'btn btn-danger btn-custom', data: { confirm: 'Are you sure?' }
+%br
+= link_to 'Back', root_path 

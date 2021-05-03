@@ -203,3 +203,17 @@ input.radio {
 		width: 50px;
 	}
 }
+
+.btn-custom {
+	margin-top: 10px;
+}
+
+.btn-secondary {
+	background-color: #777;
+	color: white;
+	text-decoration: none;
+	&:hover {
+		color: white;
+		background-color: #555;
+	}
+}

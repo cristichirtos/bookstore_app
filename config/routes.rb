@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/search_api', to: 'books#search_books_api'
   post '/search', to: 'books#search'
   post '/books/new', to: 'books#new'
+  patch '/books/:id/sell', to: 'books#sell', as: 'sell_book'
   resources :users
   resources :books
 end

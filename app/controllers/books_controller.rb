@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
   include BooksHelper
 
+  before_action :set_book, only: [:show, :edit, :sell, :update, :destroy]
+
   def show
-    @book = Book.find(params[:id])
   end
 
   def index
@@ -41,9 +42,41 @@ class BooksController < ApplicationController
     end
   end 
 
+  def edit
+  end
+
+  def sell
+    if @book.update(quantity: @book.quantity - 1)
+      flash.now[:success] = 'Book sold!'
+    else 
+      @book.reload
+      flash.now[:danger] = 'Book is out of stock.'
+    end
+    render 'show'
+  end
+
+  def update
+    if @book.update(book_params)
+      flash[:success] = 'Book updated successfully!'
+      redirect_to @book 
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy 
+    @book.destroy 
+    flash[:success] = 'Book deleted successfully!'
+    redirect_to home_path
+  end
+
   private 
 
     def book_params
-      params.require(:book).permit(:title, :author, :genre, :publishing_date, :quantity, :price, :description, :publisher, :image_url)
+      params.require(:book).permit(:title, :author, :genre, :publishing_date, :quantity, :price, :description, :publisher)
+    end
+
+    def set_book 
+      @book = Book.find(params[:id])
     end
 end

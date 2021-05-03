@@ -1,0 +1,35 @@
+- provide(:title, 'Edit')
+%h3 Edit book 
+
+.row 
+  .col-md-6.col-md-offset-3
+    = form_with(model: @book, local: true) do |f|
+      = render 'shared/error_messages', object: @book
+
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+
+      = f.label :author
+      = f.text_field :author, class: 'form-control'
+
+      = f.label :genre  
+      = f.text_field :genre, class: 'form-control'
+
+      = f.label :description
+      = f.text_area :description, class: 'form-control'
+
+      = f.label :publisher
+      = f.text_field :publisher, class: 'form-control'
+
+      = f.label :publishing_date
+      = f.date_field :publishing_date, class: 'form-control'
+
+      = f.label :quantity
+      = f.text_field :quantity, class: 'form-control'
+
+      = f.label :price
+      = f.text_field :price, class: 'form-control'
+
+      = f.submit 'Update book', class: 'btn btn-primary'
+    
+    = link_to 'Back', @book

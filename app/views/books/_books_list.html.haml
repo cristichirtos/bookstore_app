@@ -5,7 +5,11 @@
         .flex-column
           = book.title 
           %p
-            %small= "by #{book.author}"
+            %small
+              = "by #{book.author}"
+              %br
+              = "Genre: #{book.genre}"
+
           - case book.quantity 
           - when 0 
             %span.label.label-default.label-pill= "#{book.quantity} Copies in Stock"
