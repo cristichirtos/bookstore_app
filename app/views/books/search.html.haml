@@ -3,5 +3,10 @@
 
 .row
   .col-md-5.col-md-offset-3
-    = render 'books_list'
+    - if @books.empty?
+      No results. 
+      = link_to "Let's add this book!", search_api_path
+      %br
+    - else
+      = render 'books_list'
     = link_to 'Back', home_path 

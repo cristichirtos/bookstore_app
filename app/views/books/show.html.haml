@@ -39,7 +39,7 @@
   = "#{@book.updated_at}"
 
 = link_to 'Sell book', sell_book_path(@book), method: :patch, class: "btn #{@book.quantity == 0 ? 'btn-secondary' : 'btn-primary'} btn-custom"
-= link_to 'Edit book', edit_book_path(@book), class: 'btn btn-primary btn-custom'
-= link_to 'Delete book', @book, method: :delete, class: 'btn btn-danger btn-custom', data: { confirm: 'Are you sure?' }
+= link_to 'Edit book', edit_book_path(@book), class: 'btn btn-primary btn-custom' if current_user_admin?
+= link_to 'Delete book', @book, method: :delete, class: 'btn btn-danger btn-custom', data: { confirm: 'Are you sure?' } if current_user_admin?
 %br
 = link_to 'Back', root_path 

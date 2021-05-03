@@ -15,6 +15,14 @@
       = f.label :password_confirmation, "Confirmation"
       = f.password_field :password_confirmation, class: 'form-control'
 
+      = f.label :role, 'R u admin? (For easier testing of admin functionality)'
+      %br
+      %input{type: 'radio', id: 'yes', name: 'user[admin]', value: 'yes', class: 'form-check-input'}
+      %label{for: 'yes', class: 'form-check-label'}Yes 
+      %br
+      %input{type: 'radio', id: 'no', name: 'user[admin]', value: 'no', class: 'form-check-input'}
+      %label{for: 'no', class: 'form-check-label'}No 
+
       = f.submit 'Create my account', class: 'btn btn-primary'
     
     = link_to 'Back', root_path

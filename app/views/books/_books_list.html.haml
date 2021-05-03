@@ -19,3 +19,4 @@
             %span.label.label-primary.label-pill= "#{book.quantity} Copies in Stock"
         .image-parent 
           = image_tag (book.image_url.nil? ? '/assets/no_book_url_image.png' : book.image_url), class: 'img-fluid', alt: book.title
+          

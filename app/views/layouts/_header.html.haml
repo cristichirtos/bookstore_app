@@ -12,6 +12,8 @@
       %ul#bs-example-navbar-collapse-1.nav.navbar-nav.navbar-right.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           %li= link_to 'Home', root_path
+          - if current_user_admin?
+            %li= link_to 'Users', users_path
           - if logged_in?
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => "dropdown", href:"#"}

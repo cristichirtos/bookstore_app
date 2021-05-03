@@ -1,0 +1,27 @@
+- provide(:title, 'User')
+
+%h3= @user.username
+%h4= 'Yep, this is you.' if @user.id == current_user.id
+
+%br
+%p
+  %strong
+    Username: 
+  = "#{@user.username}"
+%p 
+  %strong 
+    Role: 
+  = "#{@user.roles.first.name}"
+%p
+  %strong
+    Time created: 
+  = "#{@user.created_at}"
+%p
+  %strong
+    Time last updated: 
+  = "#{@user.updated_at}"
+
+= link_to 'Edit user', edit_user_path(@user), class: 'btn btn-primary btn-custom' 
+= link_to 'Delete user', @user, method: :delete, class: 'btn btn-danger btn-custom', data: { confirm: 'Are you sure?' }
+%br
+= link_to 'Back', users_path 

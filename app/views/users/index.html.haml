@@ -1,0 +1,15 @@
+- provide(:title, 'Users')
+%h1="#{current_user_admin? ? 'The Bookstore Users' : "Sorry, but you shouldn't be here"}"
+
+.row
+  .col-md-5.col-md-offset-3
+    %ul.list-group
+      - @users.each do |user|
+        %a.book-path{href: user_path(user), class: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center'}
+          .flex-column
+            Username: 
+            = user.username
+            %br
+            Role: 
+            = user.roles.first.name
+

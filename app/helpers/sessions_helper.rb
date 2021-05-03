@@ -17,6 +17,12 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def current_user_admin?
+    return false unless logged_in?
+
+    !current_user.roles.find_by(name: :admin).nil?
+  end
+
   def set_temp_book_url(url)
     session[:book_url] = url 
   end
