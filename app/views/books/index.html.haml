@@ -1,8 +1,9 @@
 -provide(:title, 'Home')
-%h3 All books
+%h1 All books
 
 .row
-  .col-12.col-md-5
+  .col-md-5.col-md-offset-3
+    = link_to('Add book', search_path)
     %ul.list-group
       - @books.each do |book|
         %a.book-path{href: book_path(book)}

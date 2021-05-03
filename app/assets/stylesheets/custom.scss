@@ -183,3 +183,10 @@ input {
 		}
 	}
 }
+
+input[type=radio],
+input.radio {
+	float: left;
+	width: auto !important;
+	margin-right: 5px;
+}

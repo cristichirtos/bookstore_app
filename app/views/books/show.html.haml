@@ -1,2 +1,4 @@
-%h1 Books#show
-%p Find me in app/views/books/show.html.haml
+- provide(:title, 'Book')
+
+%h3= @book.title
+%h4= "by #{@book.author}"
