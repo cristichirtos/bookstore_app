@@ -11,7 +11,7 @@ class BooksController < ApplicationController
 
   def search
     @query = params[:query][:query_text]
-    @books = Book.where("title LIKE '%#{@query}%' OR author LIKE '%#{@query}%' OR genre LIKE '%#{@query}%'")
+    @books = Book.where("lower(title) LIKE '%#{@query}%' OR lower(author) LIKE '%#{@query}%' OR lower(genre) LIKE '%#{@query.downcase}%'")
   end
 
   def search_books_api
