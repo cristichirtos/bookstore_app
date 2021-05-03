@@ -1,0 +1,17 @@
+%ul.list-group
+  - @books.each do |book|
+    %a.book-path{href: book_path(book), class: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center'}
+      .flex-custom
+        .flex-column
+          = book.title 
+          %p
+            %small= "by #{book.author}"
+          - case book.quantity 
+          - when 0 
+            %span.label.label-default.label-pill= "#{book.quantity} Copies in Stock"
+          - when 1..5
+            %span.label.label-danger.label-pill= "#{book.quantity} Copies in Stock"
+          - else 
+            %span.label.label-primary.label-pill= "#{book.quantity} Copies in Stock"
+        .image-parent 
+          = image_tag (book.image_url.nil? ? '/assets/no_book_url_image.png' : book.image_url), class: 'img-fluid', alt: book.title

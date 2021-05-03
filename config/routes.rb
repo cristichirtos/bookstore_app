@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
   get '/home', to: 'books#index'
-  get '/search', to: 'books#search'
+  get '/search_api', to: 'books#search_books_api'
+  post '/search', to: 'books#search'
   post '/books/new', to: 'books#new'
   resources :users
   resources :books

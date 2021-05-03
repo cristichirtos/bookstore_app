@@ -10,6 +10,11 @@ class BooksController < ApplicationController
   end
 
   def search
+    @query = params[:query][:query_text]
+    @books = Book.where("title LIKE '%#{@query}%' OR author LIKE '%#{@query}%' OR genre LIKE '%#{@query}%'")
+  end
+
+  def search_books_api
   end
 
   def new 
@@ -26,6 +31,8 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     add_attributes_to_book(@book, params[:book][:google_book]) if params[:book][:google_book]
+    set_temp_book_url(@book.image_url) unless @book.image_url.nil?
+    @book.image_url ||= get_temp_book_url
     if @book.save 
       flash[:success] = 'Book added successfuly!'
       redirect_to home_path 
@@ -37,6 +44,6 @@ class BooksController < ApplicationController
   private 
 
     def book_params
-      params.require(:book).permit(:title, :author, :genre, :publishing_date, :quantity, :price, :description, :publisher)
+      params.require(:book).permit(:title, :author, :genre, :publishing_date, :quantity, :price, :description, :publisher, :image_url)
     end
 end

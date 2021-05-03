@@ -49,11 +49,6 @@ h2 {
   color: $light-gray;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
 #logo {
 	float: left;
 	margin-right: 10px;
@@ -189,4 +184,22 @@ input.radio {
 	float: left;
 	width: auto !important;
 	margin-right: 5px;
+}
+
+.flex-custom {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-between;
+}
+
+.books-options {
+	display: inline-flex;
+	input {
+		width: 300px;
+		margin-left: 10px;
+		display: inline-flex;
+	}
+	.btn {
+		width: 50px;
+	}
 }

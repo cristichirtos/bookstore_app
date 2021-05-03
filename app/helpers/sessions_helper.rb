@@ -16,4 +16,12 @@ module SessionsHelper
     reset_session
     @current_user = nil
   end
+
+  def set_temp_book_url(url)
+    session[:book_url] = url 
+  end
+
+  def get_temp_book_url
+    session.delete(:book_url)
+  end
 end
