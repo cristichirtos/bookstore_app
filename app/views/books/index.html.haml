@@ -12,7 +12,7 @@
       
     - if current_user_admin?
       %br
-      = link_to 'Generate .csv report', '#', class: 'btn btn-primary'
-      = link_to 'Generate .pdf report', '#', class: 'btn btn-primary'
+      = link_to 'Generate .csv report', csv_report_path, class: 'btn btn-primary', target: '_blank'
+      = link_to 'Generate .pdf report', pdf_report_path, class: 'btn btn-primary', target: '_blank'
 
     = render 'books_list'

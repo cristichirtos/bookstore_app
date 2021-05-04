@@ -34,7 +34,14 @@ class BookService
 
   def update_by_id(id, params)
     book = Book.find(id)
-    book.update(params) ? book : nil
+    book.update(params)
+    book
+  end
+
+  def sell_by_id(id)
+    book = Book.find(id)
+    book.update(quantity: book.quantity - 1)
+    book
   end
 
   def delete_by_id(id)
@@ -44,6 +51,10 @@ class BookService
 
   def update_image(book, url)
     book.update(image_url: url)
+  end
+
+  def books_for_report()
+    books = Book.where(quantity: 0)
   end
 
   private

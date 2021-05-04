@@ -1,8 +1,12 @@
 require_relative '../services/book_service'
+require_relative '../factory/report_service_factory'
+require_relative '../services/CSV_report_service'
+require_relative '../services/PDF_report_service'
 require_relative '../models/dto/book_dto'
 
 class BooksController < ApplicationController
   before_action :set_service
+  before_action :set_report_service_factory, only: [:generate_pdf_report, :generate_csv_report]
 
   def show
     @book = @book_service.find_by_id(params[:id])
@@ -49,8 +53,8 @@ class BooksController < ApplicationController
   end
 
   def sell
-    @book = @book_service.find_by_id(params[:id])
-    if @book.update(quantity: @book.quantity - 1)
+    @book = @book_service.sell_by_id(params[:id])
+    if @book.errors.empty?
       flash.now[:success] = 'Book sold!'
     else 
       @book.reload
@@ -61,7 +65,7 @@ class BooksController < ApplicationController
 
   def update
     @book = @book_service.update_by_id(params[:id], book_params)
-    unless @book.nil?
+    if @book.errors.empty?
       flash[:success] = 'Book updated successfully!'
       redirect_to @book 
     else
@@ -75,6 +79,16 @@ class BooksController < ApplicationController
     redirect_to home_path
   end
 
+  def generate_csv_report
+    books = @book_service.books_for_report()
+    generate_report(books, @report_service_factory.get_report_service(:csv))
+  end
+
+  def generate_pdf_report
+    books = @book_service.books_for_report()
+    generate_report(books, @report_service_factory.get_report_service(:pdf))
+  end
+
   private 
 
     def book_params
@@ -83,5 +97,14 @@ class BooksController < ApplicationController
 
     def set_service 
       @book_service = BookService.new
+    end
+
+    def set_report_service_factory
+      @report_service_factory = ReportServiceFactory.new([CSVReportService.new, PDFReportService.new])
+    end
+
+    def generate_report(books, report_service)
+      data = report_service.generate_report(books)
+      send_data(data, filename: "report-#{Time.now.to_i}.#{report_service.type.to_s}", disposition: 'inline')
     end
 end
