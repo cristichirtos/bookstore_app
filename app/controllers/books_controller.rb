@@ -28,7 +28,7 @@ class BooksController < ApplicationController
     query_title = params[:query][:title]
     if query_title.blank?
       flash.now[:danger] = 'Please add a title.'
-      render 'search'
+      render 'search_books_api'
     else
       @book = Book.new
       @result_books = @book_service.search_google_books(query_title)
