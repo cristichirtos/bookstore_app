@@ -1,4 +1,4 @@
-class BookDTO
+class BookDto
   attr_accessor :title, :author, :genre, :description, :publisher, :publishing_date, :quantity, :price, :google_books_id
   def initialize(params)
     @title = params[:title] 

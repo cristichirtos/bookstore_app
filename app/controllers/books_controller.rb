@@ -36,8 +36,8 @@ class BooksController < ApplicationController
   end 
 
   def create
-    bookDTO = BookDTO.new(book_params)
-    @book = @book_service.create(bookDTO)
+    book_dto = BookDto.new(book_params)
+    @book = @book_service.create(book_dto)
     set_temp_book_url(@book.image_url) unless @book.image_url.nil?
     if @book.errors.empty?
       @book_service.update_image(@book, get_temp_book_url) if @book.image_url.nil?

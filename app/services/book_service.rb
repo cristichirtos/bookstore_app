@@ -7,8 +7,8 @@ class BookService
 
   MAX_RESULTS = 5
 
-  def create(bookDTO)
-    book = Book.new(bookDTO.attributes)
+  def create(book_dto)
+    book = Book.new(book_dto.attributes)
     add_attributes_to_book(book, bookDTO.google_books_id) if bookDTO.google_books_id
 
     book.save

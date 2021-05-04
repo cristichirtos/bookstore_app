@@ -1,7 +1,7 @@
 class UserService
-  def register(userDTO)
-    user = User.new(username: userDTO.username, password: userDTO.password, password_confirmation: userDTO.password_confirmation)
-    if userDTO.admin.nil? || userDTO.admin == 'no'
+  def register(user_dto)
+    user = User.new(username: user_dto.username, password: user_dto.password, password_confirmation: user_dto.password_confirmation)
+    if user_dto.admin.nil? || user_dto.admin == 'no'
       user.roles << Role.find_by(name: :employee)
     else 
       user.roles << Role.find_by(name: :admin)

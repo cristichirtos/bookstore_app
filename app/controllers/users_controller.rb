@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    userDTO = UserDTO.new(user_params.to_h)
-    @user = @user_service.register(userDTO)
+    user_dto = UserDto.new(user_params.to_h)
+    @user = @user_service.register(user_dto)
     if @user.errors.empty?
       log_in @user
       flash[:success] = 'Welcome to the Bookstore App!'
