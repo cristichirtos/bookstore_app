@@ -12,7 +12,7 @@
         %p Choose a book from the Google Books search results: 
         - @result_books.each do |google_book|
           .radio-group.row
-            %input{type: 'radio', id: @result_books.index(google_book), name: 'book[google_book]', value: google_book['id'], class: 'form-check-input'}
+            %input{type: 'radio', id: @result_books.index(google_book), name: 'book[google_books_id]', value: google_book['id'], class: 'form-check-input'}
             %label{for: @result_books.index(google_book), class: 'form-check-label'}
               = "#{google_book['volumeInfo']['title']} #{'- ' + google_book['volumeInfo']['authors'][0] if google_book['volumeInfo']['authors']}, #{google_book['volumeInfo']['publisher'] ||= 'no publisher'}"
 

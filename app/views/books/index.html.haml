@@ -9,5 +9,10 @@
         = f.text_field :query_text, class: 'form-control', placeholder: 'Search by title, author or genre'
 
         = f.submit 'Go', class: 'btn btn-primary'
+      
+    - if current_user_admin?
+      %br
+      = link_to 'Generate .csv report', '#', class: 'btn btn-primary'
+      = link_to 'Generate .pdf report', '#', class: 'btn btn-primary'
 
     = render 'books_list'
