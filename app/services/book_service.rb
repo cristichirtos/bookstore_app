@@ -9,7 +9,7 @@ class BookService
 
   def create(book_dto)
     book = Book.new(book_dto.attributes)
-    add_attributes_to_book(book, bookDTO.google_books_id) if bookDTO.google_books_id
+    add_attributes_to_book(book, book_dto.google_books_id) if book_dto.google_books_id
 
     book.save
     book
