@@ -20,7 +20,8 @@ class UserService
 
   def update_by_id(id, params)
     user = User.find(id)
-    user.update(params) ? user : nil
+    user.update(params)
+    user
   end
 
   def delete_by_id(id)

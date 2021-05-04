@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = @user_service.update_by_id(params[:id], user_params)
-    unless @user.nil?
+    if @user.errors.empty?
       flash[:success] = 'User updated successfully!'
       redirect_to @user 
     else
