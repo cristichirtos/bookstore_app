@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/home', to: 'books#index'
   get '/search_api', to: 'books#search_books_api'
-  post '/search', to: 'books#search'
+  get '/search', to: 'books#search'
   post '/books/new', to: 'books#new'
   patch '/books/:id/sell', to: 'books#sell', as: 'sell_book'
   get '/generate_csv_report', to: 'books#generate_csv_report', as: 'csv_report'
